@@ -1,0 +1,28 @@
+Sub e1()
+
+'set ie as a new object and set it as a webbrowser
+Dim ie As Object
+Set ie = CreateObject("internetexplorer.application")
+
+'open google and wait google has opened completely
+With ie
+    .Visible = True
+    .navigate "https://www.google.co.nz"
+
+Do While .busy
+    DoEvents
+Loop
+
+Do While .readystate <> 4
+    DoEvents
+Loop
+
+'get element from google and set value Then click submit button
+
+.document.getelementbyid("lst-ib").Value = Range("a1")
+.document.getelementsbyname("btnK")(0).Click
+
+
+End With
+End Sub
+
